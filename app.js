@@ -2,14 +2,17 @@ const express=require('express')
 const mongoose=require('mongoose')
 const authrouter=require('./routers/auth')
 const passport=require('passport')
-const Csession=require('cookie-session')
+const Csession=require('express-session')
 const profierouter=require('./routers/user')
-const { response } = require('express')
 const app= express()
 const http=require('http').createServer(app)
 const port = 5000 
 const io=require('socket.io')(http)
-
+const expresssession=Csession({
+    secret:"aman",
+    resave:false,
+    saveUninitialized:false
+})
 
 
 
@@ -23,22 +26,24 @@ mongoose.connect(dbUrl,{useNewUrlParser:true,useUnifiedTopology:true})
 
     
 
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);    
 
-app.use(Csession({
-    keys:["amankumar"],
-    maxAge:100000
-}))
+app.use(expresssession)
 app.use(passport.initialize())
 app.use(passport.session())
 
 const passportconfig=require('./passport-config/passport-conig')
-    
-
-
 var roomnumber=123456;
 
+io.use(function(socket,next){
+    expresssession(socket.request,{},next)
+})
+
 io.on('connection',socket => {
-        var room;
+    var user=socket.request.session.passport
+    user ? console.log(user) : console.log("44")    
+
+    var room;
         socket.on('joined',data =>{
                 room=data;
                 socket.join(data)
@@ -53,7 +58,7 @@ io.on('connection',socket => {
             io.in(room).emit('mr',data)
 
         })
-
+        socket.emit('test',user)
         // console.log("a user connected")
 
     })
@@ -81,14 +86,14 @@ app.use('/profile',profierouter)
 
 
 app.get('/',(req,res)=>{
-    // res.render('home',{user:req.user})
-    res.render('chat')
+    res.render('home',{user:req.user})
+    // res.render('chat')
     // res.end()
 })
 
 
 app.get('/test',(req,res)=>{
-    res.render('home',{user:req.user})
+    res.render('chat',{user:req.user})
 })
  
 app.get('/test2',(req,res)=>{

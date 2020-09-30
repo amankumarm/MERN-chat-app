@@ -37,7 +37,7 @@
     <script src="http://localhost:5000/socket.io/socket.io.js"></script>
     <script>
 
-        var socket= io('http://localhost:5000')
+        var socket= io('http://localhost:5000/test')
         var username=prompt("enter your name")
         var chatcont=document.getElementsByClassName('chatcontainer')[0]
         var ip = document.getElementsByClassName('item')[0]
@@ -58,7 +58,9 @@
             chatcont.appendChild(ele)
 
         })
-
+        socket.on('test',function(data) {
+            console.log(data)
+        })
     </script> 
 </body>
 </html>

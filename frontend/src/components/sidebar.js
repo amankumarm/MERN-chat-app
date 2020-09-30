@@ -5,16 +5,24 @@ class Sidebar extends Component {
         super(props)
     
         this.state = {
-            contacts:["Aman Kumar M","Dhanush Patel","Akanksha Akkihal","Shivukumar H","Voshwanath Reddy","Varun Singh","T S Shashank"]
+            contacts:["Aman Kumar M","Shivukumar H","Voshwanath Reddy","Varun Singh","T S Shashank"]
         }
+        
+    }
+    
+    enteringroom=(e)=>{
+        var a = e.target.getAttribute('name')
+        console.log(a)
+
     }
     
     
+
     render() {
         return (
             <div className="usercards mitem">
                 {
-                    this.state.contacts.map(item => <div className="user_card">{item}</div>)
+                    this.state.contacts.map((item,index) => <div className="user_card" name={index} onClick={this.enteringroom}>{item}</div>)
                 }
             </div>
         )
