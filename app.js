@@ -1,9 +1,10 @@
 const express=require('express')
 const mongoose=require('mongoose')
 const authrouter=require('./routers/auth')
+const messagesrouter=require('./routers/messages')
+const profierouter=require('./routers/user')
 const passport=require('passport')
 const Csession=require('express-session')
-const profierouter=require('./routers/user')
 const app= express()
 const http=require('http').createServer(app)
 const port = 5000 
@@ -67,10 +68,10 @@ io.on('connection',socket => {
 
 
 
-
-    //view setup
-    app.set('view engine','ejs')
-    app.set('views','templates')
+    
+//view setup
+app.set('view engine','ejs')
+app.set('views','templates')
     
 
 //static    
@@ -81,6 +82,7 @@ app.use(express.urlencoded({extended:true}))
 //external routes
 app.use('/auth',authrouter)
 app.use('/profile',profierouter)
+app.use('/messages',messagesrouter)
 
 
 
