@@ -1,30 +1,50 @@
 import React, { Component } from 'react'
-
+import axios from "axios";
+import keys from "../../../keys";
+import Chatsection from './chatsection';
 class Sidebar extends Component {
     constructor(props) {
         super(props)
-    
-        this.state = {
-            contacts:["Aman Kumar M","Shivukumar H","Voshwanath Reddy","Varun Singh","T S Shashank"]
+
+        this.state={
+            contacts:[],
+            roomid:""
         }
-        
     }
     
-    enteringroom=(e)=>{
-        var a = e.target.getAttribute('name')
-        console.log(a)
+    componentDidMount(){
+        axios.get(`/profile/getuserinfo`)
+        .then(res=>{
+            const usrobj=res.data
+            this.setState({
+                contacts:usrobj.contacts
+            })
+        })
+        .catch(err=>console.log(err))
+        
+        //fetch all contacts
+    }
 
+    enteringroom=(e)=>{
+        var goinginid = e.target.getAttribute('name')
+        // console.log(goingini d)
+        this.setState({
+            roomid:goinginid
+        })             
     }
     
     
 
     render() {
         return (
+            <>
             <div className="usercards mitem">
                 {
-                    this.state.contacts.map((item,index) => <div className="user_card" name={index} onClick={this.enteringroom}>{item}</div>)
+                    this.state.contacts.map((item,index) => <div className="user_card" name={Object.values(this.state.contacts[index])[0]} onClick={this.enteringroom}>{Object.keys(this.state.contacts[index])[0]}</div>)
                 }
             </div>
+             <Chatsection enteringroomid={this.state.roomid} />
+             </>
         )
     }
 }

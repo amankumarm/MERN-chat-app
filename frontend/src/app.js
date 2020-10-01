@@ -8,7 +8,7 @@ class App extends Component {
         return (
             <div className="app_outer">
                 <Sidebar />
-                <ChatSection />
+               
             </div>
         )
     }

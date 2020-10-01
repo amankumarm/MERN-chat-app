@@ -34,6 +34,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const passportconfig=require('./passport-config/passport-conig')
+const User = require('./models/user')
 var roomnumber=123456;
 
 io.use(function(socket,next){
@@ -77,7 +78,7 @@ app.set('views','templates')
 //static    
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
-
+app.use(express.json())
 
 //external routes
 app.use('/auth',authrouter)
@@ -89,6 +90,10 @@ app.use('/messages',messagesrouter)
 
 app.get('/',(req,res)=>{
     res.render('home',{user:req.user})
+    User.find()
+    .then((res)=> console.log(res))
+    .catch(err=>console.log(err))    
+    
     // res.render('chat')
     // res.end()
 })

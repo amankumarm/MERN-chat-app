@@ -10,7 +10,6 @@ passport.serializeUser((user,done)=>{
 passport.deserializeUser((id,done)=>{
     User.findOne({googleid:id})    
     .then((userfound)=>{
-        console.log(userfound)
         done(null,userfound)
 
     })
@@ -26,7 +25,7 @@ passport.use(new GoogleStrategy({
     clientID:keys.googlekeys.clientId,
     clientSecret:keys.googlekeys.clientSecret
 },(accessToken,refreshToken,profile,done)=>{
-    User.findOne({username:profile.displayname})
+    User.findOne({googleid:profile.id})
     .then((user)=>{
         if (user) {
             console.log(typeof profile.id)
