@@ -54,7 +54,7 @@ io.on('connection',socket => {
         
         socket.on('ms',data =>{
             console.log('message recived'+` ${data}`)
-            io.in(room).emit('mr',data)
+            socket.broadcast.emit('mr',data)
 
         })
         socket.emit('test',user)

@@ -38,7 +38,7 @@ class Sidebar extends Component {
     
 
     render() {
-        return (
+        return ( 
             <>
             <div className="usercards mitem">
                 {

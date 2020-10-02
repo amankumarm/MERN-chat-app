@@ -15,15 +15,18 @@ class Chatsection  extends Component {
         this.state = {
             inputcontent:'hi aman',
             endpoint:'http://localhost:5000/',
-            messages:[],
+            messages:["aman","kumar","dhanu"],
             entering:this.props.enteringroomid
         }
+
+        this.socket=socketIOClient(this.state.endpoint)
+        
     }
     
     
 
 
-    componentDidUpdate(prevprops){
+    componentDidUpdate(prevprops,prevstates){
         if(this.props.enteringroomid!=prevprops.enteringroomid){
             const socket=socketIOClient(this.state.endpoint)
             socket.emit('joined',this.props.enteringroomid)
@@ -32,20 +35,24 @@ class Chatsection  extends Component {
             // .then(res=>console.log(res))
             // .catch(err=>console.log(err))
         }
+
         
-           
+               
     }
     messagehandler=(e)=>{
         e.preventDefault();
-        const msgs=this.state.messages
         const socket=socketIOClient(this.state.endpoint)
         socket.emit('ms',this.state.inputcontent)
-        socket.once('mr',data=>{
-            var cc=document.getElementsByClassName('chatcontainer')[0]
-            var ele=document.createElement("div")
-            ele.innerText=data
-            cc.appendChild(ele)
+        this.setState({
+            messages:[...this.state.messages,this.state.inputcontent]
         })
+        socket.on('mr',data=>{
+            let newmsg=[...this.state.messages,data]
+            this.setState({
+                messages:newmsg
+            })
+        })
+        
     }
 
     
@@ -56,11 +63,15 @@ class Chatsection  extends Component {
     }
 
     render() {
+        const allmessages=this.state.messages.map((item) => <p>{item}</p>)
+
         return (
                <> 
               <div className="chat_outer mitem" id="chat-container">
                   <div className='chatcontainer chatitem' >
-                      
+                      {
+                          allmessages
+                      }
                   </div>
                   <div className="ib chatitem" >
               <input className='msg_input '  name="inputcontent" onChange={this.changehandler} />
