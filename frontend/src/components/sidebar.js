@@ -28,9 +28,11 @@ class Sidebar extends Component {
     enteringroom=(e)=>{
         var goinginid = e.target.getAttribute('name')
         // console.log(goingini d)
+        this.state.roomid=goinginid 
         this.setState({
             roomid:goinginid
-        })             
+        })          
+        console.log('goin in '+this.state.roomid)
     }
     
     

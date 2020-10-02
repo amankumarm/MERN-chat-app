@@ -22,10 +22,10 @@ const expresssession=Csession({
 //database setup
 const dbUrl="mongodb+srv://user1:user1@node.bczjx.mongodb.net/nodetest?retryWrites=true&w=majority"
 mongoose.connect(dbUrl,{useNewUrlParser:true,useUnifiedTopology:true})
-.then((res)=>{console.log("connected");http.listen(5000)})
+.then((res)=>{console.log("connected");})
 .catch((err)=>console.log(err))
 
-    
+http.listen(5000)                                                                                                             // add this inside mongo .then for db related stuff 
 
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);    
 
@@ -49,11 +49,8 @@ io.on('connection',socket => {
         socket.on('joined',data =>{
                 room=data;
                 socket.join(data)
+                // console.log("data"+data)
         })
-
-        socket.on('setusername',data=>{
-            console.log(data)
-        })  
         
         socket.on('ms',data =>{
             console.log('message recived'+` ${data}`)
@@ -93,7 +90,7 @@ app.get('/',(req,res)=>{
     User.find()
     .then((res)=> console.log(res))
     .catch(err=>console.log(err))    
-    
+     
     // res.render('chat')
     // res.end()
 })
