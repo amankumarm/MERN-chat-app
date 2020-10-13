@@ -57,6 +57,7 @@ io.on('connection',socket => {
             socket.broadcast.emit('mr',data)
 
         })
+
         socket.emit('test',user)
         // console.log("a user connected")
 

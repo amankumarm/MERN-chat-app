@@ -36,13 +36,12 @@
     </div>
     <script src="http://localhost:5000/socket.io/socket.io.js"></script>
     <script>
-
         var socket= io('http://localhost:5000/test')
         var username=prompt("enter your name")
         var chatcont=document.getElementsByClassName('chatcontainer')[0]
         var ip = document.getElementsByClassName('item')[0]
         var b=document.getElementsByClassName('button')[0]
-        // console.log(button)
+        // console.log(button).-
         
         socket.emit('joined',username)
 
@@ -52,12 +51,7 @@
             socket.emit('ms',ip.value)
         })
         
-        socket.on('mr',function(data) {
-           var ele=document.createElement("div")
-            ele.innerText=data;
-            chatcont.appendChild(ele)
-
-        })
+        
         socket.on('test',function(data) {
             console.log(data)
         })

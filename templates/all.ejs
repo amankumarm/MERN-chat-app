@@ -11,6 +11,18 @@
 </div>
 <script src="http://localhost:5000/socket.io/socket.io.js"></script>
 <script src="main.js"></script>
+<script>
+    var socket=io('http://localhost:5000/')
+    socket.on("mr",function(data){
+    var incmessage=data;
+    var cc=document.getElementsByClassName("chatcontainer")[0]
+    var nm=document.createElement("div")
+    nm.innerText=data
+    cc.appendChild(nm)
+    console.log(data)
+
+})
+</script>
 </body>
 
 </html>
