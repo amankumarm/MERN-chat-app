@@ -1,12 +1,15 @@
 import React,{useRef} from 'react'
 import {Modal,Form,Button} from 'react-bootstrap'
-function Newcontactsmodal({closemodal}) {                       //fetch all contacts
+import {  UseContacts } from "../contexts/contactsProvider";
+function Newcontactsmodal({closeModal}) {                       //fetch all contacts
     const idref=useRef()
     const nameref=useRef()
+    const { createContacts } = UseContacts()
     
 function submithandler(e){
 e.preventDefault()
-closemodal()
+createContacts(idref.current.value,nameref.current.value)
+closeModal(false)
 
 }
 
@@ -26,7 +29,7 @@ closemodal()
                     <Form.Control type="text" ref={nameref} required />
                 </Form.Group>
             </Form>
-            <Button type="submit">Create Contact</Button>
+            <Button type="submit" onClick={submithandler}>Create Contact</Button>
         </Modal.Body>
         </>
     )
