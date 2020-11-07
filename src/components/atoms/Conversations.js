@@ -1,10 +1,25 @@
 import React from 'react'
+import {ListGroup} from 'react-bootstrap'
+import { UseConversations } from '../contexts/ConversationProvider'
 
 function Conversations() {
+    const {conversations,setselectConversationIndex} = UseConversations()
+    
     return (
-        <div>
-            <h3>Convo</h3>
-        </div>
+     <ListGroup variant="flush">
+         {
+             conversations.map((conversations, index)=>(
+                 <ListGroup.Item key={index}
+                    action
+                    active={conversations.selected}
+                    onClick={()=> setselectConversationIndex(index)}>
+                     {
+                         conversations.recipients.map(r=>r.name).join(' , ')
+                     }
+                 </ListGroup.Item>
+             ))
+            }
+     </ListGroup>   
     )
 }
 
