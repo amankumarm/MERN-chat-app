@@ -7,10 +7,10 @@ function OpenConversation() {
         const lastmessageref=useRef();
     
         useEffect(()=>{
-            if (lastMessageref.current) {
-                lastMessageref.current.scrollIntoView({smooth:true})
+            if (lastmessageref.current) {
+                lastmessageref.current.scrollIntoView({smooth:true})
             }
-        },lastmessageref.current)
+        })
     
     
     function handleSubmit(e){
@@ -19,7 +19,9 @@ function OpenConversation() {
         selectedConversation.recipients.map(r=>r.id),
         text
         )
+        setText(' ')
     }
+
 
         return (
         <div className='d-flex flex-column flex-grow-1'>
@@ -27,9 +29,9 @@ function OpenConversation() {
                 <div className="d-flex flex-column align-items-start justify-content-end px-3" >
                     {
                         selectedConversation.messages.map((message,index)=>{
-                            const lastmessage=
+                            const lastmessage=selectedConversation.messages.length - 1===index
                             return (
-                                <div
+                                <div 
                                 key={index}
                                 ref={lastmessageref ? lastmessageref :null}
                                 className={`my-1 d-flex flex-column ${message.fromme ? 'align-self-end':''}`}

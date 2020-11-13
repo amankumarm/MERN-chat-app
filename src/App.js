@@ -4,16 +4,18 @@ import useLocalStorage from "./components/hooksComponents/uselocalStorage";
 import Dashboard from "./components/Dashboard";
 import { ContactsProvider } from './components/contexts/contactsProvider'
 import { ConversationsProvider } from "./components/contexts/ConversationProvider";
+import { SocketProvider } from "./components/contexts/SocketProvider";
 function App() {
   const [id, setId]=useLocalStorage('id')
   
   const dashboard=(
-    <ContactsProvider>
-    <ConversationsProvider id={id}>
-      <Dashboard id={id} />
-    </ConversationsProvider>
-    </ContactsProvider>
-    
+    <SocketProvider id={id}>
+      <ContactsProvider>
+        <ConversationsProvider id={id}>
+          <Dashboard id={id} />
+        </ConversationsProvider>
+      </ContactsProvider>
+    </SocketProvider>
   )
   
   
