@@ -5,13 +5,15 @@ function OpenConversation() {
         const [text,setText]=useState("")
         const {sendMessage,selectedConversation}=UseConversations()
         const lastmessageref=useRef();
+
     
         useEffect(()=>{
             if (lastmessageref.current) {
                 lastmessageref.current.scrollIntoView({smooth:true})
             }
         })
-    
+        
+
     
     function handleSubmit(e){
         e.preventDefault()
@@ -20,6 +22,7 @@ function OpenConversation() {
         text
         )
         setText(' ')
+
     }
 
 

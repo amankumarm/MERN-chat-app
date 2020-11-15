@@ -33,7 +33,11 @@ module.exports={
 
         ]
     },
-
+    plugins: [
+        new HtmlWebpackPlugin({
+           title: 'Async Await With React',
+           template: 'index.html',
+        })],
     performance:{
         hints:false
     }

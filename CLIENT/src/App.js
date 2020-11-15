@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard";
 import { ContactsProvider } from './components/contexts/contactsProvider'
 import { ConversationsProvider } from "./components/contexts/ConversationProvider";
 import { SocketProvider } from "./components/contexts/SocketProvider";
+import "regenerator-runtime/runtime.js";
 function App() {
   const [id, setId]=useLocalStorage('id')
   

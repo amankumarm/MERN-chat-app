@@ -2,6 +2,7 @@ import React,{ useContext,useEffect,useState,useCallback }  from 'react'
 import UseLocalStorage from '../hooksComponents/uselocalStorage'
 import { UseContacts } from './contactsProvider'
 import { useSocket } from './SocketProvider'
+import axios from "Axios";
 
 const ConversationsContext=React.createContext()
 
@@ -58,19 +59,26 @@ export function ConversationsProvider({id,children}) {
             const newConversation=prevConvo.map(conversation =>{
                 if (arrayEquality(conversation.recipients,recipients)) {
                     madeChange=true
-                    return {...conversation,
-                            messages:[...conversation.messages,newMessage]}
-                }
-                return conversation
 
+                    return {...conversation,
+                        messages:[...conversation.messages,newMessage]}
+                    }
+                    return conversation
+                    
+                })
+                if(madeChange){
+                    return newConversation 
+                }
+                else{
+                    return [...prevConvo,{recipients,messages:[newMessage]}]
+                }
             })
-            if(madeChange){
-                return newConversation 
-            }
-            else{
-                return [...prevConvo,{recipients,messages:[newMessage]}]
-            }
-        })
+
+            axios.post('/update-messages/',{id,conversations})
+            .then((res)=>{
+                console.log(res.data)
+            })
+            .catch(err=>console.log(err.data))
     },[setConversations])
 
     useEffect(()=>{
@@ -82,7 +90,6 @@ export function ConversationsProvider({id,children}) {
     
     function sendMessage(recipients,text){
         socket.emit('send-message',{recipients,text})
-
         addMessageToConversation({recipients,text,sender:id})
     }
 

@@ -1,6 +1,7 @@
 import React,{useRef} from 'react'
 import { Container,Form,Button  } from "react-bootstrap";
 import { v4 as uuid } from "uuid"
+import axios from "Axios";
 function Login({idupdate}) {
     const idref = useRef()
     function handleSubmit(e){
@@ -9,7 +10,11 @@ function Login({idupdate}) {
     }
 
     function createhandler(){
-        idupdate(uuid())
+        var newuserid=uuid()
+        axios.post('/create-user',{newuserid})
+        .then()
+        .catch(err=>console.log(err.data))
+        idupdate(newuserid)
     }
     return (
        <Container className='align-items-center d-flex' style={{height:'100vh'}}>
@@ -18,7 +23,7 @@ function Login({idupdate}) {
                    <Form.Label>Enter Your Id </Form.Label>
                    <Form.Control type="text" ref ={idref} required></Form.Control>
                </Form.Group>
-               <Button type="submit" className="mr-2">Login</Button>
+               <Button type="submit" className="mr-2" >Login</Button>
                <Button variant="secondary" onClick={createhandler}>Create a New Id</Button>
            </Form>
        </Container>

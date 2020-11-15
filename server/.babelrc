@@ -1,4 +1,4 @@
 {
-    "presets": ["@babel/preset-env","@babel/preset-react"],
+    "presets": ["@babel/preset-env","@babel/preset-react","es2015", "react"],
     "plugins": ["transform-class-properties"]
 }
