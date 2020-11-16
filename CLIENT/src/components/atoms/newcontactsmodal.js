@@ -4,11 +4,12 @@ import { UseContacts } from "../contexts/contactsProvider";
 function Newcontactsmodal({closeModal}) {                       //fetch all contacts
     const idref=useRef()
     const nameref=useRef()
-    const { createContacts } = UseContacts()
+    const { createContacts,updatecontactsforbackend } = UseContacts()
     
 function submithandler(e){
 e.preventDefault()
 createContacts(idref.current.value,nameref.current.value)
+updatecontactsforbackend()
 closeModal(false)
 
 }

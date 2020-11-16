@@ -14,7 +14,7 @@ export function UseConversations(){
 export function ConversationsProvider({id,children}) {
     const {contacts}=UseContacts()
     const [selectConversationIndex,setselectConversationIndex] = useState(0)
-    const [conversations, setConversations] = UseLocalStorage('conversations',[])
+    const [conversations, setConversations] = UseLocalStorage('conversations',[],id)
     const socket=useSocket()
 
 
@@ -73,12 +73,6 @@ export function ConversationsProvider({id,children}) {
                     return [...prevConvo,{recipients,messages:[newMessage]}]
                 }
             })
-
-            axios.post('/update-messages/',{id,conversations})
-            .then((res)=>{
-                console.log(res.data)
-            })
-            .catch(err=>console.log(err.data))
     },[setConversations])
 
     useEffect(()=>{

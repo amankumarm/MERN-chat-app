@@ -5,12 +5,19 @@ const http=require('http')
 const app = express();
 
 var server=app.listen(process.env.PORT || 5000)
-const {findall,create_user}=require('./controls/dbactions')
+const {
+    findall,
+    create_user,
+    get_user_messages,
+    update_contacts,
+    update_conversations
+
+}=require('./controls/dbactions')
 
 //db
 const mongoose=require('mongoose')
 const {dburl}=require('./keys') 
-mongoose.connect(dburl,{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect(dburl,{ useFindAndModify: false ,useNewUrlParser:true,useUnifiedTopology:true})
 .then((result)=>{console.log('connected');})
 .catch((err)=>console.log(err))
 
@@ -62,24 +69,56 @@ res.json(req.body)
 res.end()
 })
 
+app.post('/validateuser',(req,res)=>{
+    const body=req.body
+    console.log(body)
+    Messages.findOne({userid:body.userid})
+    .then(resp=>{
+        // console.log(resp)
+        if (resp){
+            res.json(resp)
+        }
+    })
+})
+
+app.get('/get-messages',(req,res)=>{
+    const body=req.body
+    get_user_messages(body.userid)
+    res.end()
+    
+
+})
 
 
 app.post('/update-messages',(req,res)=>{
     const body=req.body
-    const updateinstance=Messages.findOneAndUpdate({userid:body.userid},{conversations:["badal gaya be"]},(err,result)=>{
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(result)
-        }
-    })
-    .th
+   update_conversations(body)
+   res.end()
  
 })
 
 
 app.post('/create-user',(req,res)=>{
     create_user(req.body.newuserid)
-    console.log("missopn passed")
+
+})
+
+
+app.post('/update-contacts',(req,res)=>{
+console.log("update-contatcs called")
+const after = update_contacts(req.body)
+console.log(after)
+res.end()
+})
+
+
+
+app.get('/test-api',(req,res)=>{
+    Messages.find()
+    .then(resp=>{
+        console.log(resp)
+        res.json(resp)
+    })
+    .catch(err=>console.log(err))
 
 })

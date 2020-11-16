@@ -9,9 +9,10 @@ import "regenerator-runtime/runtime.js";
 function App() {
   const [id, setId]=useLocalStorage('id')
   
+  
   const dashboard=(
     <SocketProvider id={id}>
-      <ContactsProvider>
+      <ContactsProvider id={id} >
         <ConversationsProvider id={id}>
           <Dashboard id={id} />
         </ConversationsProvider>

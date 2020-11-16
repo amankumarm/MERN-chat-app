@@ -55,7 +55,7 @@ function Sidebar({id}) {
             </Tab.Container>
             <Modal show={modalopen} onHide={closemodal}>
                 {
-                    onconvCick ? <NewConversationModal closeModal={closemodal} /> : <NewContactsModal closeModal={setmodal} />
+                    onconvCick ? <NewConversationModal closeModal={closemodal} /> : <NewContactsModal id={id} closeModal={setmodal} />
                 }
             </Modal>
         </div>

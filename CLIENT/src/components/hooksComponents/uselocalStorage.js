@@ -1,8 +1,9 @@
 import { useState,useEffect } from "react";
+import axios from "Axios";
 
 const PREFIX='chat-app-'
 
-export default function useLocalStorage(key,initialvalue){
+export default function useLocalStorage(key,initialvalue,id){
 
 const prefixedkey=PREFIX+key
 const [value,setvalue] = useState(()=>{
@@ -20,6 +21,20 @@ const [value,setvalue] = useState(()=>{
 
     useEffect(()=>{
         localStorage.setItem(prefixedkey,JSON.stringify(value))
+
+        if (key==='contacts') {
+            const c=localStorage.getItem(prefixedkey)
+                axios.post('/update-contacts/',{userid:id,contacts:JSON.parse(c)})
+                .then(res=>{console.log(res)})
+                .catch(err=>{console.log(err)})            
+        } else if(key==='conversations') {
+            const c=localStorage.getItem(prefixedkey)
+                axios.post('/update-messages/',{userid:id,conversations:JSON.parse(c)})
+                .then(res=>{console.log(res)})
+                .catch(err=>{console.log(err)})
+        }
+        
+
     },[prefixedkey,value])
 
 

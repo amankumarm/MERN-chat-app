@@ -6,7 +6,15 @@ function Login({idupdate}) {
     const idref = useRef()
     function handleSubmit(e){
     e.preventDefault()
-        idupdate(idref.current.value)
+    axios.post('/validateuser/',{userid:idref.current.value})
+    .then(resp=>{
+        if (resp.data.length>0) {
+            // localStorage.setItem('chat-app-conversations')
+            idupdate(idref.current.value)
+        }
+    })
+
+    .catch(err=>console.log)
     }
 
     function createhandler(){
