@@ -70,15 +70,17 @@ res.end()
 })
 
 app.post('/validateuser',(req,res)=>{
+    console.log("validating users")
     const body=req.body
     console.log(body)
     Messages.findOne({userid:body.userid})
     .then(resp=>{
-        // console.log(resp)
+        console.log(resp)
         if (resp){
             res.json(resp)
         }
     })
+    .catch(err=>console.log(err))
 })
 
 app.get('/get-messages',(req,res)=>{

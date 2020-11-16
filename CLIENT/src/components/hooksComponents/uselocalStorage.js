@@ -8,7 +8,7 @@ export default function useLocalStorage(key,initialvalue,id){
 const prefixedkey=PREFIX+key
 const [value,setvalue] = useState(()=>{
     const jsonvalue=localStorage.getItem(prefixedkey)
-    if(jsonvalue!=null){
+    if(jsonvalue!=null && jsonvalue!=="undefined"){
         return JSON.parse(jsonvalue)
     }                                                                     //fetch user infos here and maybe add it to Contexts
     if (typeof initialvalue==='function'){

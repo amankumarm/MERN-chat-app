@@ -1,6 +1,8 @@
 import React,{useRef} from 'react'
 import { Container,Form,Button  } from "react-bootstrap";
 import { v4 as uuid } from "uuid"
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 import axios from "Axios";
 function Login({idupdate}) {
     const idref = useRef()
@@ -8,13 +10,14 @@ function Login({idupdate}) {
     e.preventDefault()
     axios.post('/validateuser/',{userid:idref.current.value})
     .then(resp=>{
-        if (resp.data.length>0) {
-            // localStorage.setItem('chat-app-conversations')
+        if (resp) {
+            localStorage.setItem('chat-app-conversations',JSON.stringify(resp.data.messages))
+            localStorage.setItem('chat-app-contacts',JSON.stringify(resp.data.contacts))
             idupdate(idref.current.value)
         }
     })
-
-    .catch(err=>console.log)
+    .catch(err=>console.log(err))
+    toast.error("Login Credentials are incorrect")
     }
 
     function createhandler(){
@@ -34,6 +37,7 @@ function Login({idupdate}) {
                <Button type="submit" className="mr-2" >Login</Button>
                <Button variant="secondary" onClick={createhandler}>Create a New Id</Button>
            </Form>
+           <ToastContainer autoClose={5000} draggable pauseOnHover closeOnClick />
        </Container>
     )
 }
