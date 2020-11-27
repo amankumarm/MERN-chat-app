@@ -1,6 +1,6 @@
 import React,{ useContext }  from 'react'
 import UseLocalStorage from '../hooksComponents/uselocalStorage'
-
+import axios from "Axios"
 const ContactsContext=React.createContext()
 
 
@@ -9,13 +9,14 @@ export function UseContacts(){
 }
 
 
-export function ContactsProvider({children}) {
-    const [contacts, setContacts] = UseLocalStorage('contacts',[])
+export function ContactsProvider({id,children}) {
+    const [contacts, setContacts] = UseLocalStorage('contacts',[],id)
 
-    function createContacts(id,name){
-        setContacts(pc=>{return [...pc,{id,name }]})
+    async function createContacts(id,name){
+         setContacts ((pc)=>{return [...pc,{id,name }]})
+        
     }
-    
+
     return (
         <ContactsContext.Provider value={{contacts,createContacts}}>
             {children}
