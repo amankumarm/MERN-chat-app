@@ -18,7 +18,7 @@ module.exports={
                 use: 'html' 
             },
             {
-                test: /\.(png|jpg)$/,
+                test: /\.(png|jpg|jpeg|svg)$/,
                 loader: 'url-loader'
             },{
             test: /\.s[ac]ss$/i,

@@ -1,33 +1,39 @@
-import React from "react";
-import Login from "./components/Login";
-import useLocalStorage from "./components/hooksComponents/uselocalStorage";
-import Dashboard from "./components/Dashboard";
-import { ContactsProvider } from './components/contexts/contactsProvider'
-import { ConversationsProvider } from "./components/contexts/ConversationProvider";
-import { SocketProvider } from "./components/contexts/SocketProvider";
-import "regenerator-runtime/runtime.js";
-function App() {
-  const [id, setId]=useLocalStorage('id')
-  
-  
-  const dashboard=(
-    <SocketProvider id={id}>
-      <ContactsProvider id={id} >
-        <ConversationsProvider id={id}>
-          <Dashboard id={id} />
-        </ConversationsProvider>
-      </ContactsProvider>
-    </SocketProvider>
-  )
-  
-  
-  return (
 
+import React from 'react';
+import GlobalStyle from './globalStyles';
+import {HashRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './pages/HomePage/Home';
+import {Navbar} from './components';
+import Featurepage from './pages/HomePage/Featurepage';
+import Aboutpage from './pages/HomePage/Aboutpage';
+import GetStartedPage from './pages/HomePage/GetStartedPage';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Mapp from "./mapp";
+import "regenerator-runtime/runtime.js";
+
+
+function App() {
+  return (
     <div className="App">
-      {id ?  dashboard :<Login idupdate={setId}/>}
+    <Router>
+      <GlobalStyle/>
+      <Navbar/>
+      <Switch>
+        <Route path="/chat" exact component={Mapp} />
+        <Route path="/" exact component ={Home} />
+        <Route path="/features" exact component ={Featurepage}/>
+        <Route path="/about-us" exact component={Aboutpage}/>
+        <Route path="/sign-up" exact component={GetStartedPage}/>
+      </Switch>
+      
+    </Router>
+      
+      
 
     </div>
   );
 }
 
-export default App;
+
+export default mapp;
+
