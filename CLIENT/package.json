@@ -43,8 +43,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "webpack --mode development --watch ./src/index.js --output ../video_chat/public/main.js",
-    "prod": "webpack --mode production ./src/index.js --output ../video_chat/public/main.js"
+    "dev": "webpack --mode development --watch ./src/index.js --output ../server/static/main.js",
+    "prod": "webpack --mode production ./src/index.js --output ../server/static/main.js"
   },
   "eslintConfig": {
     "extends": [

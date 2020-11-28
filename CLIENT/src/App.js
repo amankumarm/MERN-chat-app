@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GlobalStyle from './globalStyles';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
@@ -25,7 +24,6 @@ function App() {
         <Route path="/about-us" exact component={Aboutpage}/>
         <Route path="/sign-up" exact component={GetStartedPage}/>
       </Switch>
-      
     </Router>
       
       
@@ -35,5 +33,5 @@ function App() {
 }
 
 
-export default mapp;
+export default App;
 

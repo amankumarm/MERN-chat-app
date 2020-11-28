@@ -1,7 +1,6 @@
 const express=require('express')
 const bodyparser=require('body-parser')
-const http=require('http')
-
+const {v4 : uuidV4} = require('uuid')
 const app = express();
 
 var server=app.listen(process.env.PORT || 5000)
@@ -56,13 +55,36 @@ io.on('connection',socket=>{
             })
         });
     })
+
+
+    socket.on('join-room',(roomId,userId)=>{
+        socket.join(roomId)
+        socket.to(roomId).broadcast.emit('user-connected',userId)
+    
+        socket.on('disconnect',()=>{
+          socket.to(roomId).broadcast.emit('user-disconnected',userId)
+        })
+      })
+
+
+
 })
 
 app.get('/',(req,res)=>{
     res.render('index');
-
+    res.end()
 
 })
+
+app.get('/video',(req,res)=>{
+    res.redirect(`/${uuidV4()}`)
+})
+
+
+app.get('/:room',(req,res)=>{
+    res.render('room',{roomId: req.params.room})
+  })
+
 app.get('/gm',(req,res)=>{
 console.log('req came')
 res.json(req.body)
@@ -115,12 +137,17 @@ res.end()
 
 
 
-app.get('/test-api',(req,res)=>{
-    Messages.find()
-    .then(resp=>{
-        console.log(resp)
-        res.json(resp)
-    })
-    .catch(err=>console.log(err))
+// app.get('/test-api',(req,res)=>{
+//     Messages.find()
+//     .then(resp=>{
+//         console.log(resp)
+//         res.json(resp)
+//     })
+//     .catch(err=>console.log(err))
+
+// })
+
+app.use((req,res)=>{
+    res.send('404')
 
 })
