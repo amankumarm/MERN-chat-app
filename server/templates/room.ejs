@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
   <script>
     const ROOM_ID="<%= roomId %>";
+    console.log(ROOM_ID)
   </script>
   <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
   <script src="/socket.io/socket.io.js" defer></script>
@@ -47,6 +48,14 @@
   <div id="gallery">
     <div id="video-grid"></div>
   </div>
-  
+  <button  id="endbutton">endcall</button>
 </body>
+<script>
+  function ended() {
+    // console.log("aamn")
+    // location.href='localhost:5000/#/endcall'
+    window.location.assign('https://localhost:5000/#/callended')
+    return;
+  }
+</script>
 </html>
