@@ -63,22 +63,4 @@ function addVideoStream(video, stream) {
   videoGrid.append(video)
 }
 
-const btn=document.getElementById('endbutton')
-btn.addEventListener('click',function (params) {
-  // socket.emit('di')
- console.log("clicked")
-  navigator.getUserMedia({audio:true, video: false},
-    function(stream) {
-         // can also use getAudioTracks() or getVideoTracks()
-        var track = stream.getTracks()[0]
-        track.muted=true
-        track.enabled=false
-        track.stop();
-        console.log(track)
-        // if only one media track
-    },
-    function(error){
-        console.log('getUserMedia() error', error);
-    });
-})
 
