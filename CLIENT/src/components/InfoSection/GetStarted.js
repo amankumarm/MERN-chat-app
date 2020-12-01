@@ -6,9 +6,9 @@ import
   InfoSec, 
   TextWrapper,
   Heading,
-  Subtitle,
   ImgWrapper,
-  Img
+  Img,
+  Links
  } from './InfoSection.elements'
 
 const GetStarted = ({lightBg,img1,img2,alt,lightText,headLine1,headLine2,imgStart,start}) => {
@@ -18,7 +18,6 @@ const GetStarted = ({lightBg,img1,img2,alt,lightText,headLine1,headLine2,imgStar
         <Container>
           <InfoRow imgStart={imgStart}>
             <InfoColumn>
-            
               <InfoRow>
               <ImgWrapper start={start}>
                 <Img src={img1} alt={alt}/>
@@ -29,7 +28,6 @@ const GetStarted = ({lightBg,img1,img2,alt,lightText,headLine1,headLine2,imgStar
                   <Heading lightText={lightText}>{headLine1}</Heading>
               </TextWrapper>
               </InfoRow>
-              
             </InfoColumn>
 
             <InfoColumn>

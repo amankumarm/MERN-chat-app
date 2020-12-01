@@ -8,6 +8,8 @@ import Aboutpage from './pages/HomePage/Aboutpage';
 import GetStartedPage from './pages/HomePage/GetStartedPage';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Mapp from "./mapp";
+import Endcall from "./components/endcall";
+import Page404 from "./components/atoms/404";
 import "regenerator-runtime/runtime.js";
 
 
@@ -16,13 +18,28 @@ function App() {
     <div className="App">
     <Router>
       <GlobalStyle/>
-      <Navbar/>
       <Switch>
         <Route path="/chat" exact component={Mapp} />
-        <Route path="/" exact component ={Home} />
-        <Route path="/features" exact component ={Featurepage}/>
-        <Route path="/about-us" exact component={Aboutpage}/>
-        <Route path="/sign-up" exact component={GetStartedPage}/>
+        <Route path="/" exact  >
+          <Navbar/>
+          <Home />
+        </Route>
+        <Route path="/features" exact>
+          <Navbar/>
+          <Featurepage />
+        </Route>
+        <Route path="/about-us" exact>
+          <Navbar/>
+          <Aboutpage />
+        </Route>
+        <Route path="/sign-up" exact >
+          <Navbar/>
+          <GetStartedPage />
+        </Route>
+        <Route exact >
+        <Page404 />
+        </Route>
+
       </Switch>
     </Router>
       

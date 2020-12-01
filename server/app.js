@@ -64,6 +64,9 @@ io.on('connection',socket=>{
         socket.on('disconnect',()=>{
           socket.to(roomId).broadcast.emit('user-disconnected',userId)
         })
+        socket.on('di',()=>{
+            socket.to(roomId).broadcast.emit('user-disconnected',userId)
+          })
       })
 
 
