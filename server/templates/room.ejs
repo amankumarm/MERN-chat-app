@@ -14,6 +14,19 @@
   <script src="script.js" defer></script>
   <title>Its Face time</title>
   <style>
+    body{
+      animation: myanimation 15s infinite;
+      overflow-x: hidden;
+    }
+
+    @keyframes myanimation {
+      0% {background-color:#edeef1;}
+      25%{background-color:#43598f;}
+      50%{background-color:#08163b}
+      75%{background-color:#1d2f5e;}
+      90% {background-color:#536592;}
+      100%{background-color:#eff1f7;}
+      }
     #video-grid{
       display: grid;
       grid-template-columns: repeat(auto-fill,300px);
@@ -39,6 +52,20 @@
       font-size:40px;
       width:100%;
     }
+
+    button{
+      padding: 8px;
+      background-color:rgb(212, 38, 38);
+      border:none;
+      color:white;
+    }
+
+    .endcall{
+      justify-content: center;
+      margin:100px;
+      margin-top:100px;
+      margin-bottom:0;
+    }
   </style>
 </head>
 <body>
@@ -48,11 +75,14 @@
   <div id="gallery">
     <div id="video-grid"></div>
   </div>
-  <button  id="endbutton" onclick="ended()">endcall</button>
+  <div class="endcall">
+    <button  id="endbutton" onclick="ended()">End call</button>
+  </div>
+  
 </body>
 <script>
   function ended() {
-    console.log("aamn")
+    //console.log("aamn")
     // location.href='localhost:5000/#/endcall'
     window.location.assign('http://localhost:5000/#/sign-up')
     return;

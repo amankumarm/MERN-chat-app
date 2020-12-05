@@ -17,7 +17,7 @@ export const homeObjOne={
   lightText: true,
   lightTextDesc: true , 
   headLine:'HASHTAG.US' , 
-  description:'Connect with the world with secure and oorivate video and text chat', 
+  description:'Be Connected to the World. Expand your Network,Your Network is your net worth.', 
   buttonLabel:'Get Started',
   alt: 'image',
   img: pic,
@@ -32,9 +32,9 @@ export const featureObj={
   lightText:false,
   lightTextDesc:false,
   headLine1:'Text Chat',
-  description1:'Someone tell me description',
+  description1:'Secure and private text with friends , family and colleagues. Best user experience.  ',
   headLine2:'Video chat',
-  description2:'Someone plzz tell me description..',
+  description2:'Video chat with smooth user experience suitable for online conferences, webinars or staying connected with friends and family.',
   imgStart: 'start',
   start:'',
 }
@@ -44,11 +44,11 @@ export const aboutObj={
   img1:pic3,
   alt1:'akanksha',
   name1:'Akanksha',
-  desc1:'arre baba jaldi soch le',
+  desc1:'Web developer | Competitive Coder',
   img2:pic4,
   alt2:'aman',
   name2:'Aman',
-  desc2:'arre baba jaldi soch le',
+  desc2:'Full Stack Web developer',
 
 
 
