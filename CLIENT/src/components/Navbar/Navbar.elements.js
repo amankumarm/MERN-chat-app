@@ -95,9 +95,9 @@ border-bottom: 3px solid transparent;
 
 export const NavLinks = styled(Link)`
 color: #fff;
-display:flex;
-align-items:center;
-text-decoration:none;
+display: flex;
+align-items: center;
+text-decoration: none;
 padding: 0.5rem 1rem;
 height: 100%;
 font-family: 'Poppins', sans-serif;
