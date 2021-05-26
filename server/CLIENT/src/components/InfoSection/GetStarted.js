@@ -20,7 +20,7 @@ const GetStarted = ({lightBg,img1,img2,alt,lightText,headLine1,headLine2,imgStar
             <InfoColumn>
               <InfoRow>
               <ImgWrapper start={start}>
-                <Li href="http://localhost:5000/#/chat"><Img src={img1} alt={alt}/></Li>
+                <Li href="https://hashtag-us.herokuapp.com/#/chat"><Img src={img1} alt={alt}/></Li>
               </ImgWrapper>
               </InfoRow>
               <InfoRow>
@@ -33,7 +33,7 @@ const GetStarted = ({lightBg,img1,img2,alt,lightText,headLine1,headLine2,imgStar
             <InfoColumn>
               <InfoRow>
               <ImgWrapper start={start}>
-                <Li href="http://localhost:5000/video"><Img src={img2} alt={alt}/></Li>
+                <Li href="https://hashtag-us.herokuapp.com/video"><Img src={img2} alt={alt}/></Li>
               </ImgWrapper>
               </InfoRow>
               <InfoRow>
