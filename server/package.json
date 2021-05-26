@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "webpack --mode development --watch ./CLIENT/src/index.js --output node node ./CLIENT/templates/static/main.js",
     "build": "webpack --mode production ./CLIENT/src/index.js --output ./CLIENT/templates/static/main.js"
