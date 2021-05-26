@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports={
     module:{
         rules:[
@@ -6,7 +7,7 @@ module.exports={
                 exclude:/node_modules/,
                 use:{
                     loader:"babel-loader"
-                }
+                },
                 
             },
             {
@@ -33,11 +34,6 @@ module.exports={
 
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-           title: 'Async Await With React',
-           template: 'index.html',
-        })],
     performance:{
         hints:false
     }
