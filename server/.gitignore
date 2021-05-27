@@ -1,1 +1,5 @@
 /node_modules/
+/CLIENT/node_modules/
+git_key
+git_key.pub
+

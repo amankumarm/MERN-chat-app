@@ -3,7 +3,7 @@ import { Container,Form,Button  } from "react-bootstrap";
 import { v4 as uuid } from "uuid"
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
-import axios from "Axios";
+import axios from "axios";
 function Login({idupdate}) {
     const idref = useRef()
     function handleSubmit(e){

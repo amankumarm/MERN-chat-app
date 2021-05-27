@@ -1,6 +1,6 @@
 import React,{ useContext }  from 'react'
 import UseLocalStorage from '../hooksComponents/uselocalStorage'
-import axios from "Axios"
+import axios from "axios"
 const ContactsContext=React.createContext()
 
 

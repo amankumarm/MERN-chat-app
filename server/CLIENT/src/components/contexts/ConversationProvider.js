@@ -2,7 +2,7 @@ import React,{ useContext,useEffect,useState,useCallback }  from 'react'
 import UseLocalStorage from '../hooksComponents/uselocalStorage'
 import { UseContacts } from './contactsProvider'
 import { useSocket } from './SocketProvider'
-import axios from "Axios";
+import axios from "axios";
 
 const ConversationsContext=React.createContext()
 

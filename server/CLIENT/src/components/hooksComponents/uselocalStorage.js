@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import axios from "Axios";
+import axios from "axios";
 
 const PREFIX='chat-app-'
 
