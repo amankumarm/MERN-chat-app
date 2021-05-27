@@ -3,7 +3,7 @@ const bodyparser=require('body-parser')
 const {v4 : uuidV4} = require('uuid')
 const app = express();
 
-var server=app.listen(process.env.PORT || 5000)
+var server=app.listen(process.env.PORT ||8080)
 const {
     findall,
     create_user,
